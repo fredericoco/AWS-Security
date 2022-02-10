@@ -15,14 +15,14 @@ An optional layer of security that acts as a firewall for controlloing traffic i
 
 ### Steps
 - select region - Ireland
-- Create VPC
-- valid CDIR block for our VPC 10.0.0.0/16
+- Create VPC: Go to the VPC dashboard, and go to create VPC
+- valid CDIR block for our VPC 10.0.0.0/16. This creates an empty VPC
 - Step 2: create Internet gateway
-- Step 2.1: attach the internet Gateway to our VPC
-- Step 3: Create a public subnet
+- Step 2.1: attach the internet Gateway to our VPC(go to actions and attach to VPC, using the VPC's ID)
+- Step 3: Create a public subnet( click on public subnet and choose the VPC)
 - Step 3.1: associate subnet to VPC
 - Step 4: Route table/s RT for public subnet
-- Step 4.1: edit routes to allow IG
+- Step 4.1: edit routes to allow access for the internet gateway (IG), add routes whole world (00000) and choose service internet gateway(the one made earlier)
 - Step 4.2 associate to out public subnet
 - Step 5: create a security group in our public subnet to allow required ports/traffic
 - allow port 80
@@ -30,3 +30,25 @@ An optional layer of security that acts as a firewall for controlloing traffic i
 - https -ssl
 - Subnet CIDR block for public -10.0.4.0/24
 - IPV4 -IPV6 (choose 4)
+
+## launching instances with the new VPC
+- laucnh a new instance, and choose the newly created network (VPC), and the newly created Subnet. In user data write:
+```
+#!/bin/bash
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install nginx -y
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+```
+- For the security group, make a new one (103a_fred_sg_vpc), allow port 80(HTTP), port 22 (SSH), port 3000 (Custom TCP)
+- This should be able to get to the nginx webpage for the instances IP
+-  Note: when you set up the db, you will need to only allow access to port 27017(TCP) and 22(TCP) because you don't want to be able to access the database (db) normally for security reasons.
+- In order to ssh into the db from the app we need to follow several steps.
+- in the app instance, cd into the .ssh folder
+- Copy and paste the eng103a.pem (on note) into the eng103a.pem, now you can ssh using a command on the connect
+- now do the chmod 400 eng103a.pem
+- now you can ssh into the db using the standard command.
+
+### Issues
+- I had to restart the mongod, because the DB AMI was incomplete. This was annoying because I had to ssh into the db via the app instance.
