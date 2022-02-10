@@ -12,3 +12,21 @@ A subnet is a range of IP addresses in your VPC. You can launch AWS resources, s
 ### What is NACL?
 An optional layer of security that acts as a firewall for controlloing traffic in and out of a subnet. Multiple subnets can be assosiated with a single network ACL, but a subnet can be associated with only one network ACL at a time.
 ![aws security](https://user-images.githubusercontent.com/39882040/153400744-b4212d38-6d69-4ec5-88b9-c4c8a558f722.PNG)
+
+### Steps
+- select region - Ireland
+- Create VPC
+- valid CDIR block for our VPC 10.0.0.0/16
+- Step 2: create Internet gateway
+- Step 2.1: attach the internet Gateway to our VPC
+- Step 3: Create a public subnet
+- Step 3.1: associate subnet to VPC
+- Step 4: Route table/s RT for public subnet
+- Step 4.1: edit routes to allow IG
+- Step 4.2 associate to out public subnet
+- Step 5: create a security group in our public subnet to allow required ports/traffic
+- allow port 80
+- allow port 3000
+- https -ssl
+- Subnet CIDR block for public -10.0.4.0/24
+- IPV4 -IPV6 (choose 4)
