@@ -11,7 +11,8 @@ A route table contains a set of rules, called routes, that are used to determine
 A subnet is a range of IP addresses in your VPC. You can launch AWS resources, such as EC2 instances, into a specific subnet. When you create a subnet, you specify the IPv4 CIDR block for the subnet, which is a subset of the VPC CIDR block.
 ### What is NACL?
 An optional layer of security that acts as a firewall for controlloing traffic in and out of a subnet. Multiple subnets can be assosiated with a single network ACL, but a subnet can be associated with only one network ACL at a time.
-![aws security](https://user-images.githubusercontent.com/39882040/153400744-b4212d38-6d69-4ec5-88b9-c4c8a558f722.PNG)
+![aws security 2](https://user-images.githubusercontent.com/39882040/153565035-f389565f-91b1-49f5-8720-a5678116fe77.PNG)
+
 
 ### Steps
 - select region - Ireland
@@ -52,6 +53,7 @@ sudo systemctl enable nginx
 
 ### Issues
 - I had to restart the mongod, because the DB AMI was incomplete. This was annoying because I had to ssh into the db via the app instance.
+<<<<<<< HEAD
 
 # Interview Preperation
 - How did you allow access to app/db?
@@ -60,3 +62,5 @@ sudo systemctl enable nginx
 - What did you do to secure it?
   
   To secure it you edit the security groups of the db. You make sure you can only access it through ports relating to the webpage.
+
+# CI/CD 
