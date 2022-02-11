@@ -52,3 +52,11 @@ sudo systemctl enable nginx
 
 ### Issues
 - I had to restart the mongod, because the DB AMI was incomplete. This was annoying because I had to ssh into the db via the app instance.
+
+# Interview Preperation
+- How did you allow access to app/db?
+  
+  You need to include an environment variable in the code. You do this by editing the .bashrc file and putting in the IP of the database and port as a variable. Exit the file and source it. If there are any issues make sure you sourced the file. 
+- What did you do to secure it?
+  
+  To secure it you edit the security groups of the db. You make sure you can only access it through ports relating to the webpage.
